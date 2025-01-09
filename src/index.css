@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Primary Colors */
+  --primary-100: #0F172A;  /* Darker background */
+  --primary-200: #1E293B;  /* Dark background */
+  --primary-300: #334155;  /* Lighter background */
+  --primary-400: #475569;  /* Medium-gray background for subtle contrast */
+  
+  /* Accent Colors */
+  --accent-100: #BAE6FD;  /* Light blue - highlights and logo */
+  --accent-200: #7DD3FC;  /* Slightly darker blue for hover effects */
+  --accent-300: #38BDF8;  /* Vivid blue for active or prominent accents */
+  
+  /* Neutral Colors */
+  --neutral-100: #FFFFFF;  /* White */
+  --neutral-200: #F8FAFC;  /* Very light gray for backgrounds */
+  --neutral-300: #E2E8F0;  /* Gray for borders or dividers */
+  --neutral-400: #CBD5E1;  /* Darker gray for secondary text */
+  
+  /* Font Sizes */
+  --fs-xs: 0.75rem;        /* Small text */
+  --fs-sm: 0.875rem;       /* Body small */
+  --fs-base: 1rem;         /* Body default */
+  --fs-lg: 1.125rem;       /* Subheadings */
+  --fs-xl: 1.25rem;        /* Main headings */
+  --fs-2xl: 1.5rem;        /* Hero subtitles */
+  --fs-3xl: 1.875rem;      /* Large hero titles */
+  --fs-4xl: 2.25rem;       /* Extra-large hero titles */
+  --fs-5xl: 3rem;          /* Show-stopping headlines */
+  
+  /* Line Heights */
+  --lh-base: 1.5;          /* Standard readability */
+  --lh-tight: 1.2;         /* Compact for titles */
+
+  /* Border Radius */
+  --radius-sm: 4px;        /* Subtle rounding */
+  --radius-md: 8px;        /* Medium rounding for buttons/cards */
+  --radius-lg: 12px;       /* Prominent rounding for featured elements */
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;    /* Small padding/margins */
+  --spacing-sm: 0.75rem;   /* Tight spacing */
+  --spacing-md: 1rem;      /* Default spacing */
+  --spacing-lg: 1.5rem;    /* Generous spacing */
+  --spacing-xl: 2rem;      /* Extra generous spacing */
+  --spacing-2xl: 3rem;     /* Section spacing */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-default: 0.3s ease-in-out;
+
+  /* Grid */
+  --grid-gap-sm: 1rem;     /* Grid spacing small */
+  --grid-gap-md: 2rem;     /* Grid spacing medium */
+  --grid-gap-lg: 3rem;     /* Grid spacing large */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--primary-100) 0%,
+    #1a1f35 50%,
+    var(--primary-100) 100%
+  );
+  color: var(--primary-100);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
