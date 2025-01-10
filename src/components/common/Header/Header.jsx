@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 
-const Header = () => {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -61,32 +61,27 @@ const Header = () => {
         {/* Navigation Menu */}
         <div className={`nav-wrapper ${menuOpen ? 'show' : ''}`}>
           <nav className="nav-menu">
-            <Link to="/shop" className={location.pathname === '/shop' ? 'active' : ''}>
-              Templates
+            <Link to="/news" className={location.pathname === '/news' ? 'active' : ''}>
+              News
+            </Link>
+            <Link to="/designs" className={location.pathname === '/designs' ? 'active' : ''}>
+              Designs
             </Link>
             <Link to="/services" className={location.pathname === '/services' ? 'active' : ''}>
               Services
             </Link>
-            <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>
-              Blog
-            </Link>
             <Link to="/tools" className={location.pathname === '/tools' ? 'active' : ''}>
               Tools
+            </Link>
+            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+              About
             </Link>
             <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
               Contact
             </Link>
           </nav>
-
-          {/* Action Buttons */}
-          <div className="header-actions">
-            <button className="btn-secondary">Sign In</button>
-            <button className="btn-primary">Get Started</button>
-          </div>
         </div>
       </div>
     </header>
   );
 };
-
-export default Header;

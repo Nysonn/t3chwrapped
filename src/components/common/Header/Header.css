@@ -9,7 +9,7 @@
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   z-index: 1000;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -18,9 +18,9 @@
   position: fixed;
   background: rgba(15, 23, 42, 0.95);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  top : 0;
+  top: 0;
   transition: 0.75s;
-} 
+}
 
 .header-container {
   padding: 1rem 1.5rem;
@@ -120,44 +120,6 @@
   color: var(--neutral-100);
 }
 
-/* Action Buttons */
-.header-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: var(--accent-100);
-  color: var(--primary-100);
-  border: none;
-}
-
-.btn-primary:hover {
-  background: var(--accent-200);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--neutral-100);
-  border: 1px solid var(--neutral-300);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
 /* Menu Toggle Button */
 .menu-toggle {
   display: none;
@@ -183,17 +145,13 @@
   .header {
     width: 95%;
   }
-  
+
   .header.scrolled {
     width: 92%;
   }
-  
+
   .nav-menu {
     gap: 1.5rem;
-  }
-  
-  .header-actions {
-    gap: 0.75rem;
   }
 }
 
@@ -203,7 +161,7 @@
     width: 92%;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .header.scrolled {
     top: 0.5rem;
     width: 90%;
@@ -224,16 +182,20 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: rgba(15, 23, 42, 0.98);
+    width: auto;
+    height: 500px;
+    border-radius: 30px;
+    background: rgba(15, 23, 42, 0.8); /* Slightly transparent background */
+    backdrop-filter: blur(12px); /* Adds a blur effect to the background */
+    -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    align-items: center;
+    padding: 1rem;
     transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    visibility: hidden;
-    border-radius: 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
+    visibility: hidden;    
   }
 
   .nav-wrapper.show {
@@ -249,19 +211,6 @@
   .nav-menu a {
     font-size: 1.25rem;
   }
-
-  .header-actions {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -270,7 +219,7 @@
     width: 95%;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .header.scrolled {
     top: 0;
     width: 100%;
@@ -295,3 +244,5 @@
     font-size: 16px;
   }
 }
+
+
