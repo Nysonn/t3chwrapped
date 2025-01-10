@@ -1,26 +1,34 @@
 import { Link } from 'react-router-dom';
 import './Hero.css';
+import HeroVideo from '../../../assets/images/hero-vid.mp4';
 
-const Hero = () => {
+export default function Hero() {
   return (
     <section className="hero">
+      {/* Background Video */}
+      <video 
+        className="hero-background-video" 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+      >
+        <source src={HeroVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Content Container */}
       <div className="hero-container">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            Your Tech Journey, <span className="accent">Elevated</span>
+        <div className="hero-left">
+          <h1 className="hero-tagline">
+            Bridging the gap between <span className="accent">Music</span> and <span className="accent">Technology</span>
           </h1>
-          <p className="hero-subtitle">
-            Explore professionally crafted web solutions tailored for modern tech enthusiasts and digital creators.
-          </p>
           <div className="hero-actions">
-            <Link to="/shop" className="btn-primary">
-              Browse Templates
+            <Link to="/designs" className="btn-primary">
+              Explore Designs
             </Link>
-            <Link to="/blog" className="btn-secondary">
-              Tech Insights
-            </Link>
-            <Link to="/services" className="btn-outline">
-              Custom Solutions
+            <Link to="/services" className="btn-secondary">
+              Our Services
             </Link>
           </div>
         </div>
@@ -31,6 +39,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
