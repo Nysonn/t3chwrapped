@@ -3,8 +3,8 @@ import MainLayout from './layouts/MainLayout/MainLayout'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import Services from './pages/Services/Services'
-import Shop from './pages/Shop/Shop'
-import Blog from './pages/Blog/Blog'
+import Designs from './pages/Designs/Designs'
+import News from './pages/News/News'
 import Tools from './pages/Tools/Tools'
 import Contact from './pages/Contact/Contact'
 
@@ -16,8 +16,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="designs" element={<Designs />} />
+          <Route path="news" element={<News />} />
           <Route path="tools" element={<Tools />} />
           <Route path="contact" element={<Contact />} />
         </Route>
