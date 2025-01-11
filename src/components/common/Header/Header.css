@@ -197,13 +197,15 @@
     align-items: center;
     padding: 1rem;
     transform: translateX(100%);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
-    visibility: hidden;    
+    visibility: hidden;  
+    opacity : 0;  
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
   }
 
   .nav-wrapper.show {
     transform: translateX(0);
     visibility: visible;
+    opacity: 1;
   }
 
   .nav-menu {

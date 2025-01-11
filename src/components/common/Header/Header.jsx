@@ -33,6 +33,7 @@ export default function Header() {
     setMenuOpen(false);
   }, [location]);
 
+  //Open menu when hamburger button is clicked
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
