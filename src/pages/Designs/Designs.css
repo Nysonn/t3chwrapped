@@ -169,23 +169,7 @@
 
 .see-more-container {
   text-align: center;
-  margin-top: var(--spacing-lg);
-}
-
-.see-more-button {
-  padding: var(--spacing-sm) var(--spacing-xl);
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-md);
-  background: var(--primary-300);
-  color: var(--neutral-100);
-}
-
-.see-more-button:hover {
-  background-color: var(--primary-700);
-  transform: scale(1.1);
+  margin-top: 75px;
 }
 
 /* Animation Keyframes */

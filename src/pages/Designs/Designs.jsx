@@ -3,6 +3,7 @@ import { AiOutlinePlayCircle } from 'react-icons/ai'; // Import the play button 
 import DemoImage1 from '../../../src/assets/images/braddie.jpg';
 import DemoImage2 from '../../../src/assets/images/brad-sings.jpg';
 import DemoImage3 from '../../../src/assets/images/brandie-singer.jpg';
+import PrimaryButton from '../../../src/components/common/Button/PrimaryButton.jsx';
 import './Designs.css';
 
 const allDesigns = [
@@ -137,12 +138,7 @@ export default function Designs({ isHomepage = false }) {
         </div>
         {isHomepage && (
           <div className="see-more-container">
-            <button
-              className="see-more-button"
-              onClick={() => (window.location.href = '/designs')}
-            >
-              See More Designs
-            </button>
+            <PrimaryButton to="/designs">See more</PrimaryButton>
           </div>
         )}
       </div>

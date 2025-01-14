@@ -1,5 +1,7 @@
-const Services = () => {
-  return <div>Services Page</div>
-}
+import FeaturedServices from "../../components/sections/Featured Services/FeaturedServices";
 
-export default Services 
+export default function Services() {
+  return (
+    <FeaturedServices />
+  );
+}

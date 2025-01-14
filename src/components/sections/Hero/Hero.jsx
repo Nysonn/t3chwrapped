@@ -25,22 +25,10 @@ export default function Hero() {
           <h1 className="hero-tagline">
             Bridging the gap between <span className="accent">Music</span> and <span className="accent">Technology</span>
           </h1>
-          {/* <div className="hero-actions">
-            <Link to="/designs" className="btn-primary">
-              Explore Designs
-            </Link>
-            <Link to="/services" className="btn-secondary">
-              Our Services
-            </Link>
-          </div> */}
            <div className="hero-actions">
             <PrimaryButton to="/designs">Explore Designs</PrimaryButton>
             <SecondaryButton to="/services">Our Services</SecondaryButton>
           </div>
-        </div>
-        <div className="hero-decorator">
-          <div className="gradient-circle"></div>
-          <div className="floating-shapes"></div>
         </div>
       </div>
     </section>
