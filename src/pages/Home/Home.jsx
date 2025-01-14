@@ -2,6 +2,7 @@ import Hero from '../../components/sections/Hero/Hero'
 import FeaturedServices from '../../components/sections/Featured Services/FeaturedServices'
 import Designs from '../Designs/Designs'
 import './Home.css'
+import Testimonials from '../../components/sections/Testimonials/Testimonials';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <Designs isHomepage={true}/>
       <FeaturedServices />
+      <Testimonials />
     </div>
   );
 }
