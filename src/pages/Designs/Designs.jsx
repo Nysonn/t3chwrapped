@@ -5,7 +5,7 @@ import DemoImage2 from '../../../src/assets/images/brad-sings.jpg';
 import DemoImage3 from '../../../src/assets/images/brandie-singer.jpg';
 import './Designs.css';
 
-const designs = [
+const allDesigns = [
   {
     id: 1,
     name: 'Artist Portfolio',
@@ -24,38 +24,81 @@ const designs = [
     images: [DemoImage1, DemoImage2, DemoImage3],
     description: 'Promote your artists and your brand professionally.',
   },
+  {
+    id: 4,
+    name: 'Record Producer',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Perfect for music producers.',
+  },
+  {
+    id: 5,
+    name: 'DJ',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Highlight your tracks and attract new gigs.',
+  },
+  {
+    id: 6,
+    name: 'Songwriter',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Promote your songwriting skills and get discovered.',
+  },
+  {
+    id: 7,
+    name: 'Event Organizer',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Showcase your events and attract new bookings.',
+  },
+  {
+    id: 8,
+    name: 'DJ',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Highlight your tracks and attract new gigs.',
+  },
+  {
+    id: 9,
+    name: 'Songwriter',
+    images: [DemoImage1, DemoImage2, DemoImage3],
+    description: 'Promote your songwriting skills and get discovered.',
+  },
 ];
 
-export default function Designs() {
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(designs.map(() => 0));
-  const [isTransitioning, setIsTransitioning] = React.useState(false);
-  const [showTooltip, setShowTooltip] = useState(null); // New state for tooltip visibility
+export default function Designs({ isHomepage = false }) {
+  const designsToShow = isHomepage ? allDesigns.slice(0, 6) : allDesigns;
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(designsToShow.map(() => 0));
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(null);
+  const [tooltipTimeout, setTooltipTimeout] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setCurrentImageIndex((prevIndexes) =>
-        prevIndexes.map((index, i) => (index + 1) % designs[i].images.length)
+        prevIndexes.map((index, i) => (index + 1) % designsToShow[i].images.length)
       );
-    }, 5000); // Interval for the transition
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [designsToShow]);
 
   useEffect(() => {
-    // Reset transition state after the transition is complete
     const timeout = setTimeout(() => {
       setIsTransitioning(false);
-    }, 1500); // Same duration as the CSS transition
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, [currentImageIndex]);
 
   const handleMouseEnter = (index) => {
-    setShowTooltip(index); // Show the tooltip for the specific design
-    setTimeout(() => {
-      setShowTooltip(null); // Hide the tooltip after 7 seconds
-    }, 10000); // Tooltip appears for 7 seconds
+    const timeout = setTimeout(() => {
+      setShowTooltip(index);
+    }, 1000);
+    setTooltipTimeout(timeout);
+  };
+
+  const handleMouseLeave = () => {
+    clearTimeout(tooltipTimeout);
+    setShowTooltip(null);
   };
 
   return (
@@ -63,12 +106,13 @@ export default function Designs() {
       <div className="container">
         <h2 className="section-title">Popular Designs</h2>
         <div className="designs-grid">
-          {designs.map((design, index) => (
+          {designsToShow.map((design, index) => (
             <div
               key={design.id}
               className="design-card"
               style={{ '--index': index }}
-              onMouseEnter={() => handleMouseEnter(index)} // Show tooltip on hover
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             >
               <div className="design-image-container">
                 <div
@@ -81,7 +125,6 @@ export default function Designs() {
                   <button className="play-button" aria-label="Press play to customize">
                     <AiOutlinePlayCircle size={40} />
                   </button>
-                  {/* Conditionally render the tooltip */}
                   {showTooltip === index && (
                     <div className="tooltip">Press play to customize</div>
                   )}
@@ -92,6 +135,16 @@ export default function Designs() {
             </div>
           ))}
         </div>
+        {isHomepage && (
+          <div className="see-more-container">
+            <button
+              className="see-more-button"
+              onClick={() => (window.location.href = '/designs')}
+            >
+              See More Designs
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

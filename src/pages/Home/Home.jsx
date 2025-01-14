@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="home">
       <Hero />
-      <Designs />
+      <Designs isHomepage={true}/>
     </div>
   )
 }
