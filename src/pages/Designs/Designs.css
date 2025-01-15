@@ -3,7 +3,11 @@
 /* Root Section Styling */
 .designs-section {
   padding: var(--spacing-2xl) 0;
-  /* margin-top : 30px; */
+}
+
+.designs-section-more {
+  padding: var(--spacing-2xl) 0;
+  margin-top : 30px;
 }
 
 /* Section Title */

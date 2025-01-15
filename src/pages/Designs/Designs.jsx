@@ -103,7 +103,7 @@ export default function Designs({ isHomepage = false }) {
   };
 
   return (
-    <section className="designs-section" id="templates">
+    <section className={isHomepage ? "designs-section" : "designs-section-more"} id="templates">
       <div className="container">
         <h2 className="section-title">Popular Designs</h2>
         <div className="designs-grid">
