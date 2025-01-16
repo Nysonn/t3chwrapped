@@ -18,7 +18,7 @@ export default function FAQSection() {
         <h2 className="section-title">Frequently Asked Questions</h2>
         <Accordion allowZeroExpanded>
           {faqData.map((item, index) => (
-            <AccordionItem key={index}>
+            <AccordionItem key={index} className="accordion__item">
               <AccordionItemHeading>
                 <AccordionItemButton>
                   <div className="accordion-header">

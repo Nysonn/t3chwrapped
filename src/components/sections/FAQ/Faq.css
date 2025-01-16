@@ -4,6 +4,7 @@
     padding: var(--spacing-2xl) var(--spacing-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
+    margin : 100px;
   }
   
   .faq-section .section-title {
@@ -15,7 +16,7 @@
   }
   
   /* Accordion Styles */
-  .accordion__item {
+.accordion__item {
     background-color: var(--primary-300);
     border: 1px solid var(--neutral-300);
     border-radius: var(--radius-md);
@@ -35,8 +36,8 @@
   
   .accordion__button {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: flex-start; /* Align everything to the left */
     background: none;
     border: none;
     font-size: var(--fs-lg);
@@ -49,19 +50,25 @@
   }
   
   .accordion__button:hover {
-    color: var(--accent-200);
-    background-color: var(--primary-400);
-  }
+    color: var(--neutral-400);
+    background : none;
+  } 
   
   .accordion-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md);
+    gap: var(--spacing-md); /* Space between the question and icons */
   }
   
+  .accordion-header span {
+    flex-grow: 1; /* Take up available space so the icons stay on the right */
+  }
+  
+  /* Icon Styles */
   .accordion-icon {
     display: flex;
+    align-items: center;
     gap: var(--spacing-xs);
   }
   
@@ -79,11 +86,11 @@
   }
   
   /* Active Accordion Icon State */
-  .accordion__item--expanded .icon-plus {
+  .accordion__item--active .icon-plus {
     display: none;
   }
   
-  .accordion__item--expanded .icon-minus {
+  .accordion__item--active .icon-minus {
     display: inline-block;
   }
   
@@ -96,6 +103,20 @@
     font-size: var(--fs-base);
     border-top: 1px solid var(--neutral-300);
     animation: fadeIn var(--transition-default);
+  }
+
+  /* Icon Styles */
+.accordion-icon .icon-plus {
+    color: var(--accent-200);
+    font-size: var(--fs-xl);
+    transition: transform var(--transition-fast);
+  }
+  
+  .accordion-icon .icon-minus {
+    color: var(--accent-300);
+    font-size: var(--fs-xl);
+    display: none; /* Initially hidden */
+    transition: transform var(--transition-fast);
   }
   
   /* Animation */
@@ -113,9 +134,10 @@
   /* Responsive Design */
   @media (max-width: 768px) {
     .faq-section {
-      padding: var(--spacing-xl);
+        padding-top : 10px;
+        margin : 50px 20px auto;
     }
-  
+
     .accordion__button {
       font-size: var(--fs-base);
     }
