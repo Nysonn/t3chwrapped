@@ -4,6 +4,7 @@ import DemoImage1 from '../../../src/assets/images/braddie.jpg';
 import DemoImage2 from '../../../src/assets/images/brad-sings.jpg';
 import DemoImage3 from '../../../src/assets/images/brandie-singer.jpg';
 import PrimaryButton from '../../../src/components/common/Button/PrimaryButton.jsx';
+import FAQSection from '../../components/sections/FAQ/Faq.jsx';
 import './Designs.css';
 
 const allDesigns = [
@@ -140,6 +141,9 @@ export default function Designs({ isHomepage = false }) {
           <div className="see-more-container">
             <PrimaryButton to="/designs">See more</PrimaryButton>
           </div>
+        )}
+        {!isHomepage && (
+          <FAQSection />
         )}
       </div>
     </section>
