@@ -4,6 +4,13 @@
   color: var(--neutral-100);
 }
 
+.featured-more {
+  padding: var(--spacing-2xl) 0;
+  background: var(--primary-gradient); /* Add a gradient for a more professional look */
+  color: var(--neutral-100);
+  margin-top : 20px;
+}
+
 .featured-container {
   max-width: 1200px;
   margin: 0 auto;

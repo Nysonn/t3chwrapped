@@ -1,8 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faSearch, faBullhorn } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setIsHomepage } from '../../../store/designsSlice';
 import './FeaturedServices.css';
 
-export default function FeaturedServices() {
+export default function FeaturedServices({ isHomepage }) {
+  const dispatch = useDispatch();
+  const isHomepageState = useSelector((state) => state.designs.isHomepage);
+
+  useEffect(() => {
+    dispatch(setIsHomepage(isHomepage));
+  }, [dispatch, isHomepage]);
+
   const features = [
     {
       icon: <FontAwesomeIcon icon={faCode} />,
@@ -25,7 +35,7 @@ export default function FeaturedServices() {
   ];
 
   return (
-    <section className="featured">
+    <section className={isHomepageState ? 'featured' : 'featured-more'}>
       <div className="featured-container">
         <h2>Our Services</h2>
         <p className="featured-subtitle">

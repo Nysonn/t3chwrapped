@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlinePlayCircle } from 'react-icons/ai'; // Import the play button icon
+import { useSelector, useDispatch } from 'react-redux';
+import { AiOutlinePlayCircle } from 'react-icons/ai';
+import {
+  setCurrentImageIndex,
+  setShowTooltip,
+  setTooltipTimeout,
+  setIsHomepage,
+} from '../../store/designsSlice';
 import DemoImage1 from '../../../src/assets/images/braddie.jpg';
 import DemoImage2 from '../../../src/assets/images/brad-sings.jpg';
 import DemoImage3 from '../../../src/assets/images/brandie-singer.jpg';
@@ -65,17 +72,22 @@ const allDesigns = [
 ];
 
 export default function Designs({ isHomepage = false }) {
+  const dispatch = useDispatch();
+  const { showTooltip, tooltipTimeout } = useSelector((state) => state.designs);
+
   const designsToShow = isHomepage ? allDesigns.slice(0, 6) : allDesigns;
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(designsToShow.map(() => 0));
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(null);
-  const [tooltipTimeout, setTooltipTimeout] = useState(null);
+  const [localIndexes, setLocalIndexes] = useState(new Array(designsToShow.length).fill(0));
 
+  // Sync isHomepage state with Redux
+  useEffect(() => {
+    dispatch(setIsHomepage(isHomepage));
+  }, [dispatch, isHomepage]);
+
+  // Automatic image slideshow
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setCurrentImageIndex((prevIndexes) =>
+      setLocalIndexes((prevIndexes) =>
         prevIndexes.map((index, i) => (index + 1) % designsToShow[i].images.length)
       );
     }, 5000);
@@ -83,28 +95,25 @@ export default function Designs({ isHomepage = false }) {
     return () => clearInterval(interval);
   }, [designsToShow]);
 
+  // Update Redux with current slideshow indexes
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 1500);
-
-    return () => clearTimeout(timeout);
-  }, [currentImageIndex]);
+    dispatch(setCurrentImageIndex(localIndexes));
+  }, [dispatch, localIndexes]);
 
   const handleMouseEnter = (index) => {
     const timeout = setTimeout(() => {
-      setShowTooltip(index);
+      dispatch(setShowTooltip(index));
     }, 1000);
-    setTooltipTimeout(timeout);
+    dispatch(setTooltipTimeout(timeout));
   };
 
   const handleMouseLeave = () => {
     clearTimeout(tooltipTimeout);
-    setShowTooltip(null);
+    dispatch(setShowTooltip(null));
   };
 
   return (
-    <section className={isHomepage ? "designs-section" : "designs-section-more"} id="templates">
+    <section className={isHomepage ? 'designs-section' : 'designs-section-more'} id="templates">
       <div className="container">
         <h2 className="section-title">Popular Designs</h2>
         <div className="designs-grid">
@@ -112,16 +121,13 @@ export default function Designs({ isHomepage = false }) {
             <div
               key={design.id}
               className="design-card"
-              style={{ '--index': index }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
               <div className="design-image-container">
                 <div
-                  className={`design-slideshow ${isTransitioning ? 'transitioning' : ''}`}
-                  style={{
-                    backgroundImage: `url(${design.images[currentImageIndex[index]]})`,
-                  }}
+                  className="design-slideshow"
+                  style={{ backgroundImage: `url(${design.images[localIndexes[index]]})` }}
                 ></div>
                 <div className="design-overlay">
                   <button className="play-button" aria-label="Press play to customize">
@@ -142,9 +148,7 @@ export default function Designs({ isHomepage = false }) {
             <PrimaryButton to="/designs">See more</PrimaryButton>
           </div>
         )}
-        {!isHomepage && (
-          <FAQSection />
-        )}
+        {!isHomepage && <FAQSection />}
       </div>
     </section>
   );
