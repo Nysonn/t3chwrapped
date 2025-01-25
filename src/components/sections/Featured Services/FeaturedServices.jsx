@@ -1,55 +1,80 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faSearch, faBullhorn } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faCode, 
+  faSearch, 
+  faBullhorn, 
+  faLaptopCode, 
+  faChartLine, 
+  faRocket 
+} from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setIsHomepage } from '../../../store/designsSlice';
-import './FeaturedServices.css';
+import classes from './FeaturedServices.module.css';
 
 export default function FeaturedServices({ isHomepage }) {
   const dispatch = useDispatch();
-  const isHomepageState = useSelector((state) => state.designs.isHomepage);
 
   useEffect(() => {
     dispatch(setIsHomepage(isHomepage));
   }, [dispatch, isHomepage]);
 
-  const features = [
+  const services = [
     {
-      icon: <FontAwesomeIcon icon={faCode} />,
+      icon: faLaptopCode,
       title: 'Custom Web Development',
-      description:
-        'Build modern, scalable, and responsive websites tailored to your needs, with cutting-edge technologies to give you an edge in the digital world.',
+      description: 'Build modern, scalable websites with cutting-edge technologies.',
+      features: ['Responsive Design', 'Performance Optimization', 'SEO-friendly'],
     },
     {
-      icon: <FontAwesomeIcon icon={faSearch} />,
-      title: 'SEO Optimization',
-      description:
-        'Boost your search engine rankings and drive organic traffic to your site with proven SEO strategies tailored to your goals.',
-    },
-    {
-      icon: <FontAwesomeIcon icon={faBullhorn} />,
+      icon: faRocket,
       title: 'Digital Marketing',
-      description:
-        'Expand your online reach with targeted campaigns, analytics-driven strategies, and effective social media management.',
+      description: 'Expand your reach with data-driven marketing strategies.',
+      features: ['Social Media', 'Content Strategy', 'Email Campaigns'],
     },
+    {
+      icon: faChartLine,
+      title: 'Analytics & SEO',
+      description: 'Boost your visibility and track your online performance.',
+      features: ['Keyword Research', 'Traffic Analysis', 'Conversion Tracking'],
+    }
   ];
 
   return (
-    <section className={isHomepageState ? 'featured' : 'featured-more'}>
-      {/* //  <section className="featured"> */}
-      <div className="featured-container">
-        <h2>Our Services</h2>
-        <p className="featured-subtitle">
-          Unlock your full potential with our tailored services for businesses, creatives, and entrepreneurs.
-        </p>
-        <div className="featured-grid">
-          {features.map((feature, index) => (
-            <div key={index} className="feature-card">
-              <div className="feature-icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
+    <section className={isHomepage ? classes.featured : classes.featuredMore}>
+      <div className={classes.container}>
+        <div className={classes.headerSection}>
+          <h2 className={classes.title}>Our Services</h2>
+          <p className={classes.subtitle}>
+            Empowering your digital presence with cutting-edge solutions
+          </p>
+        </div>
+
+        <div className={classes.servicesGrid}>
+          {services.map((service, index) => (
+            <div key={index} className={classes.serviceCard}>
+              <div className={classes.iconWrapper}>
+                <FontAwesomeIcon icon={service.icon} className={classes.icon} />
+              </div>
+              <h3 className={classes.serviceTitle}>{service.title}</h3>
+              <p className={classes.serviceDescription}>{service.description}</p>
+              <ul className={classes.featureList}>
+                {service.features.map((feature, idx) => (
+                  <li key={idx} className={classes.featureItem}>
+                    <span className={classes.featureDot}></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <button className={classes.learnMore}>Learn More</button>
             </div>
           ))}
+        </div>
+
+        <div className={classes.ctaSection}>
+          <h3 className={classes.ctaTitle}>Ready to Transform Your Digital Presence?</h3>
+          <p className={classes.ctaText}>Let's create something amazing together</p>
+          <button className={classes.ctaButton}>Get Started</button>
         </div>
       </div>
     </section>
