@@ -3,8 +3,6 @@ import classes from './Tools.module.css';
 import SamplePackImage from '../../../src/assets/images/sample-pack.jpg';
 
 const Tools = () => {
-  const [activeCategory, setActiveCategory] = useState('DAWs');
-
   const categories = [
     {
       name: 'DAWs',
@@ -32,38 +30,39 @@ const Tools = () => {
     },
   ];
 
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-  };
-
-  const activeItems = categories.find(
-    (category) => category.name === activeCategory
-  ).items;
-
   return (
     <div className={classes.toolsContainer}>
-      <h1 className={classes.title}>Tools for Artists and Musicians</h1>
-
-      <div className={classes.categoryMenu}>
-        {categories.map((category) => (
-          <button
-            key={category.name}
-            className={`${classes.categoryButton} ${
-              activeCategory === category.name ? classes.active : ''
-            }`}
-            onClick={() => handleCategoryChange(category.name)}
-          >
-            {category.name}
-          </button>
-        ))}
+      <div className={classes.heroSection}>
+        <h1 className={classes.title}>Essentials for Music Creation</h1>
+        <p className={classes.subtitle}>Professional tools for modern music producers</p>
       </div>
 
-      <div className={classes.itemsGrid}>
-        {activeItems.map((item) => (
-          <div key={item.name} className={classes.itemCard}>
-            <img src={item.image} alt={item.name} className={classes.itemImage} />
-            <h2 className={classes.itemName}>{item.name}</h2>
-            <p className={classes.itemPrice}>{item.price}</p>
+      <div className={classes.categoriesGrid}>
+        {categories.map((category) => (
+          <div key={category.name} className={classes.categorySection}>
+            <div className={classes.categoryHeader}>
+              <h2 className={classes.categoryTitle}>{category.name}</h2>
+              <div className={classes.categoryDivider}></div>
+            </div>
+            
+            <div className={classes.itemsGrid}>
+              {category.items &&
+                category.items.map((item) => (
+                  <div key={item.name} className={classes.itemCard}>
+                    <div className={classes.imageWrapper}>
+                      <img src={item.image} alt={item.name} className={classes.itemImage} />
+                    </div>
+                    <div className={classes.itemContent}>
+                      <h3 className={classes.itemName}>{item.name}</h3>
+                      <p className={classes.itemPrice}>{item.price}</p>
+                      <div className={classes.buttonGroup}>
+                        <button className={classes.buyButton}>Buy Now</button>
+                        <button className={classes.cartButton}>Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
           </div>
         ))}
       </div>
