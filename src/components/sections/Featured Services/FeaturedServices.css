@@ -8,7 +8,7 @@
   padding: var(--spacing-2xl) 0;
   background: var(--primary-gradient); /* Add a gradient for a more professional look */
   color: var(--neutral-100);
-  margin-top : 20px;
+  margin-top : 40px;
 }
 
 .featured-container {
@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 
-.featured h2 {
+.featured h2, .featured-more h2 {
   text-align: center;
   font-size: var(--fs-5xl);
   margin-bottom: var(--spacing-xl);
@@ -77,7 +77,7 @@
     padding: 0 var(--spacing-md);
   }
   
-  .featured h2 {
+  .featured h2, .featured-more h2 {
     font-size: var(--fs-3xl);
     margin-top : 10px;
   }

@@ -36,6 +36,7 @@ export default function FeaturedServices({ isHomepage }) {
 
   return (
     <section className={isHomepageState ? 'featured' : 'featured-more'}>
+      {/* //  <section className="featured"> */}
       <div className="featured-container">
         <h2>Our Services</h2>
         <p className="featured-subtitle">
