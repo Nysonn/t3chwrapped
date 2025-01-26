@@ -9,7 +9,7 @@ export default function Home() {
     <div className="home">
       <Hero />
       <Designs isHomepage={true}/>
-      <FeaturedServices />
+      <FeaturedServices isHomepage={true}/>
       <Testimonials />
     </div>
   );

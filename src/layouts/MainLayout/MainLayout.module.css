@@ -4,7 +4,6 @@
   flex-direction: column;
 }
 
-.main-content {
+.maincontent {
   flex: 1;
-  padding-top: 80px; /* Height of the header */
 }

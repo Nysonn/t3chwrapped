@@ -2,7 +2,7 @@
 
 /* Root Section Styling */
 .designsSection {
-  padding: var(--spacing-2xl) 0;
+  padding: 0.45rem 0;
   background: linear-gradient(165deg, var(--primary-200), var(--primary-100));
   min-height: 100vh;
   color: var(--neutral-100);
@@ -12,6 +12,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+  margin-top : -50px;
 }
 
 .header {
@@ -294,7 +295,9 @@
 
 .seeMoreContainer {
   text-align: center;
-  margin-top: var(--spacing-2xl);
+  margin: var(--spacing-4xl) 0;
+  padding: var(--spacing-2xl) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .designActions {
@@ -331,9 +334,52 @@
 .exploreButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-2xl);
-  font-size: var(--fs-lg);
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--accent-300), var(--accent-200));
+  color: var(--primary-100);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-default);
+  text-decoration: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.exploreButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+}
+
+.exploreButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.exploreButton:hover::before {
+  left: 100%;
+}
+
+.exploreButton svg {
+  font-size: var(--fs-xl);
+  transition: transform 0.3s ease;
+}
+
+.exploreButton:hover svg {
+  transform: translateX(5px);
 }
 
 /* Add hover animation for the customize button */

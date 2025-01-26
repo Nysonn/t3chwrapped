@@ -155,12 +155,20 @@ export default function Designs() {
   }, []);
 
   useEffect(() => {
+    let filtered = [];
     if (activeCategory === "All Templates") {
-      setFilteredDesigns(allDesigns);
+      filtered = allDesigns;
     } else {
-      setFilteredDesigns(allDesigns.filter(design => design.category === activeCategory));
+      filtered = allDesigns.filter(design => design.category === activeCategory);
     }
-  }, [activeCategory]);
+    
+    // If on homepage, only show first 6 designs
+    if (isHomepage) {
+      filtered = filtered.slice(0, 6);
+    }
+    
+    setFilteredDesigns(filtered);
+  }, [activeCategory, isHomepage]);
 
   const handleMouseEnter = (index) => {
     const timeout = setTimeout(() => {
@@ -178,7 +186,7 @@ export default function Designs() {
     <section className={classes.designsSection}>
       <div className={classes.container}>
         <header className={classes.header}>
-          <h1 className={classes.title}>Premium Website Templates</h1>
+          <h1 className={classes.title}>Popular Designs</h1>
           <p className={classes.subtitle}>
             Professionally crafted designs for the modern music industry
           </p>
@@ -191,7 +199,10 @@ export default function Designs() {
               <span>Filter Templates</span>
             </div>
             <div className={classes.resultsCount}>
-              {filteredDesigns.length} templates found
+              {isHomepage 
+                ? `Showing 6 of ${allDesigns.length} templates` 
+                : `${filteredDesigns.length} templates found`
+              }
             </div>
           </div>
           <div className={classes.categoryTabs}>

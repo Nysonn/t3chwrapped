@@ -71,12 +71,14 @@ export default function FeaturedServices({ isHomepage }) {
           ))}
         </div>
 
-        <div className={classes.ctaSection}>
+        {!isHomepage && (
+          <div className={classes.ctaSection}>
           <h3 className={classes.ctaTitle}>Ready to Transform Your Digital Presence?</h3>
           <p className={classes.ctaText}>Let's create something amazing together</p>
           <button className={classes.ctaButton}>Get Started</button>
         </div>
-      </div>
+        )}
+        </div>
     </section>
   );
 }

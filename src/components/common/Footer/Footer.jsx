@@ -33,11 +33,11 @@ export default function Footer() {
               </div>
               <div className={classes.contactItem}>
                 <FontAwesomeIcon icon={faPhone} />
-                <span>+1 (555) 123-4567</span>
+                <span>+(256) 559-766-05</span>
               </div>
               <div className={classes.contactItem}>
                 <FontAwesomeIcon icon={faMapMarkerAlt} />
-                <span>New York, NY</span>
+                <span>Mbarara, Uganda</span>
               </div>
             </div>
           </div>
