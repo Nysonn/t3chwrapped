@@ -124,8 +124,8 @@ export default function News() {
                   </div>
                   <h4>{post.title}</h4>
                   <p>{post.description}</p>
-                  <a href={post.link} className={classes.cardReadMore}>
-                    Read More <FaArrowRight />
+                  <a href={`/blog/${post.title.toLowerCase().replace(/\s+/g, '-')}`} className={classes.cardReadMore}>
+                      Read More <FaArrowRight />
                   </a>
                 </div>
               </article>

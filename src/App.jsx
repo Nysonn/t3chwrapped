@@ -7,6 +7,7 @@ import Designs from './pages/Designs/Designs'
 import News from './pages/News/News'
 import Tools from './pages/Tools/Tools'
 import Contact from './pages/Contact/Contact'
+import BlogPost from './pages/BlogPost/BlogPost'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="services" element={<Services />} />
           <Route path="designs" element={<Designs />} />
           <Route path="news" element={<News />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="tools" element={<Tools />} />
           <Route path="contact" element={<Contact />} />
         </Route>

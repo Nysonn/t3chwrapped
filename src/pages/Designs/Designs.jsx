@@ -192,38 +192,38 @@ export default function Designs() {
           </p>
         </header>
 
-        <div className={classes.filterSection}>
-          <div className={classes.filterHeader}>
-            <div className={classes.filterIcon}>
-              <FiFilter />
-              <span>Filter Templates</span>
+            <div className={classes.filterSection}>
+            <div className={classes.filterHeader}>
+              <div className={classes.filterIcon}>
+                <FiFilter />
+                <span>Filter Templates</span>
+              </div>
+              <div className={classes.resultsCount}>
+                {isHomepage 
+                  ? `Showing 6 of ${allDesigns.length} templates` 
+                  : `${filteredDesigns.length} templates found`
+                }
+              </div>
             </div>
-            <div className={classes.resultsCount}>
-              {isHomepage 
-                ? `Showing 6 of ${allDesigns.length} templates` 
-                : `${filteredDesigns.length} templates found`
-              }
+            <div className={classes.categoryTabs}>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  className={`${classes.categoryTab} ${
+                    activeCategory === category ? classes.activeTab : ''
+                  }`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                  <span className={classes.categoryCount}>
+                    {category === "All Templates" 
+                      ? allDesigns.length 
+                      : allDesigns.filter(d => d.category === category).length}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
-          <div className={classes.categoryTabs}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`${classes.categoryTab} ${
-                  activeCategory === category ? classes.activeTab : ''
-                }`}
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-                <span className={classes.categoryCount}>
-                  {category === "All Templates" 
-                    ? allDesigns.length 
-                    : allDesigns.filter(d => d.category === category).length}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
 
         <div className={classes.designsGrid}>
           {filteredDesigns.map((design) => (

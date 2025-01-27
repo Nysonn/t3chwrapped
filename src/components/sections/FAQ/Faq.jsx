@@ -30,9 +30,9 @@ export default function FAQSection() {
           <h2 className={styles.title}>
             Frequently Asked Questions
           </h2>
-          <p className={styles.subtitle}>
+          {/* <p className={styles.subtitle}>
             Find answers to common questions about our services and platform
-          </p>
+          </p> */}
         </motion.div>
 
         <Accordion 

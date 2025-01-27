@@ -73,4 +73,8 @@
   .hero-actions{
     justify-content: center;
   }
+
+  .hero {
+    height: 500px;
+  }
 }
