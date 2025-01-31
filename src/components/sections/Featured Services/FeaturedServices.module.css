@@ -6,14 +6,17 @@
   overflow: hidden;
 }
 
-.featuredMore {
-  margin-top: 40px;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
+}
+
+.containerMore{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  margin-top: var(--spacing-xl);
 }
 
 .headerSection {
@@ -124,21 +127,6 @@
   height: 6px;
   background: var(--accent-300);
   border-radius: 50%;
-}
-
-.learnMore {
-  background: transparent;
-  border: 1px solid var(--accent-300);
-  color: var(--accent-300);
-  padding: var(--spacing-sm) var(--spacing-xl);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-default);
-}
-
-.learnMore:hover {
-  background: var(--accent-300);
-  color: var(--primary-100);
 }
 
 .ctaSection {

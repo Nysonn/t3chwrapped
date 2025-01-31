@@ -184,7 +184,7 @@ export default function Designs() {
 
   return (
     <section className={classes.designsSection}>
-      <div className={classes.container}>
+      <div className={isHomepage ? classes.container : '' }>
         <header className={classes.header}>
           <h1 className={classes.title}>Popular Designs</h1>
           <p className={classes.subtitle}>

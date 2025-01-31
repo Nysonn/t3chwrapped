@@ -1,19 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faCode, 
-  faSearch, 
-  faBullhorn, 
   faLaptopCode, 
   faChartLine, 
-  faRocket 
+  faTools
 } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react'; // ✅ Added useState here
 import { setIsHomepage } from '../../../store/designsSlice';
 import classes from './FeaturedServices.module.css';
+import SecondaryButton from '../../common/Button/SecondaryButton';
+import ScheduleCallModal from '../../common/ScheduleCall/ScheduleCallModal';
 
 export default function FeaturedServices({ isHomepage }) {
   const dispatch = useDispatch();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
 
   useEffect(() => {
     dispatch(setIsHomepage(isHomepage));
@@ -24,25 +25,30 @@ export default function FeaturedServices({ isHomepage }) {
       icon: faLaptopCode,
       title: 'Custom Web Development',
       description: 'Build modern, scalable websites with cutting-edge technologies.',
-      features: ['Responsive Design', 'Performance Optimization', 'SEO-friendly'],
-    },
+      features: ['Responsive Design', 'Performance Optimization', 'SEO-friendly', 'Cross-Browser Compatibility', 'Custom UI/UX Design'],
+    }, 
     {
-      icon: faRocket,
-      title: 'Digital Marketing',
-      description: 'Expand your reach with data-driven marketing strategies.',
-      features: ['Social Media', 'Content Strategy', 'Email Campaigns'],
+      icon: faTools,
+      title: 'Artist Website Maintenance',
+      description: 'Ensure your artist website remains secure, up-to-date, and fully functional.',
+      features: ['Regular Updates', 'Security Enhancements', 'Bug Fixes & Support', 'Backup & Recovery', 'Content Updates'],
     },
     {
       icon: faChartLine,
       title: 'Analytics & SEO',
-      description: 'Boost your visibility and track your online performance.',
-      features: ['Keyword Research', 'Traffic Analysis', 'Conversion Tracking'],
+      description: 'Boost your online visibility and track your website’s performance with data-driven insights.',
+      features: ['Keyword Research', 'Traffic Analysis', 'Conversion Tracking', 'On-Page & Off-Page SEO', 'Competitor Analysis'],
     }
-  ];
+  ];  
+
+  const openModal = (service) => {
+    setSelectedService(service);
+    setModalIsOpen(true);
+  };
 
   return (
-    <section className={isHomepage ? classes.featured : classes.featuredMore}>
-      <div className={classes.container}>
+    <section className={classes.featured}>
+      <div className={isHomepage ? classes.container : classes.containerMore}>
         <div className={classes.headerSection}>
           <h2 className={classes.title}>Our Services</h2>
           <p className={classes.subtitle}>
@@ -66,19 +72,28 @@ export default function FeaturedServices({ isHomepage }) {
                   </li>
                 ))}
               </ul>
-              <button className={classes.learnMore}>Learn More</button>
+              <SecondaryButton onClick={() => openModal(service)}>Schedule a Call</SecondaryButton>
             </div>
           ))}
         </div>
 
         {!isHomepage && (
           <div className={classes.ctaSection}>
-          <h3 className={classes.ctaTitle}>Ready to Transform Your Digital Presence?</h3>
-          <p className={classes.ctaText}>Let's create something amazing together</p>
-          <button className={classes.ctaButton}>Get Started</button>
-        </div>
+            <h3 className={classes.ctaTitle}>Ready to Transform Your Digital Presence?</h3>
+            <p className={classes.ctaText}>Let's create something amazing together</p>
+            <button className={classes.ctaButton}>Get Started</button>
+          </div>
         )}
-        </div>
+      </div>
+
+      {/* Modal Component */}
+      {modalIsOpen && (
+        <ScheduleCallModal
+          isOpen={modalIsOpen}
+          onClose={() => setModalIsOpen(false)}
+          service={selectedService}
+        />
+      )}
     </section>
   );
 }
