@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { X } from "lucide-react"; // Import the close icon
 import classes from "./ScheduleCallModal.module.css"; 
+import PrimaryButton from "../Button/PrimaryButton";
+import SecondaryButton from "../Button/SecondaryButton";
 
 Modal.setAppElement("#root");
 
@@ -12,6 +14,7 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
     date: "",
     time: "",
     service: service?.title || "",
+    timezone: "UTC", // Added default time zone
   });
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
       onRequestClose={onClose}
       className={classes.modal}
       overlayClassName={classes.overlay}
+      closeTimeoutMS={500} // Ensure that modal close is smooth and matches the animation duration
     >
       {/* Close Button */}
       <button className={classes.closeIcon} onClick={onClose} aria-label="Close">
@@ -87,30 +91,6 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
         </div>
 
         <div className={classes.formGroup}>
-          <label htmlFor="date">Preferred Date</label>
-          <input
-            id="date"
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={classes.formGroup}>
-          <label htmlFor="time">Preferred Time</label>
-          <input
-            id="time"
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className={classes.formGroup}>
           <label htmlFor="service">Selected Service</label>
           <input
             id="service"
@@ -122,12 +102,8 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
         </div>
 
         <div className={classes.buttonGroup}>
-          <button type="submit" className={classes.confirmButton}>
-            Confirm & Schedule
-          </button>
-          <button type="button" onClick={onClose} className={classes.closeButton}>
-            Cancel
-          </button>
+          <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
+          <PrimaryButton>Confirm</PrimaryButton>
         </div>
       </form>
     </Modal>

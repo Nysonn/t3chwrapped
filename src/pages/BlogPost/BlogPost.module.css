@@ -2,6 +2,7 @@
   background: var(--primary-200);
   min-height: 100vh;
   padding-top: var(--spacing-xl);
+  overflow-x: hidden;
 }
 
 .topNav {

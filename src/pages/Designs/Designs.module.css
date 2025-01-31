@@ -6,6 +6,7 @@
   background: linear-gradient(165deg, var(--primary-200), var(--primary-100));
   min-height: 100vh;
   color: var(--neutral-100);
+  overflow-x: hidden;
 }
 
 .container {

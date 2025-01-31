@@ -3,11 +3,11 @@
   background: linear-gradient(165deg, var(--primary-200), var(--primary-100));
   color: var(--neutral-100);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
 }

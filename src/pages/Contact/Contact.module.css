@@ -6,6 +6,7 @@
   padding: var(--spacing-xl);
   color: var(--neutral-100);
   margin-top : 100px;
+  overflow-x: hidden;
 }
 
 .contactContent {
