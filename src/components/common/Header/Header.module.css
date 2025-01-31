@@ -22,7 +22,7 @@
   transition: 0.75s;
 }
 
-.header-container {
+.headerContainer {
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
@@ -43,7 +43,7 @@
   transform: translateY(-2px);
 }
 
-.logo-wrapper {
+.logoWrapper {
   position: relative;
   width: 40px;
   height: 40px;
@@ -52,21 +52,21 @@
   justify-content: center;
 }
 
-.logo-cloud {
+.logoCloud {
   position: absolute;
   color: var(--accent-100);
   font-size: 40px;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
-.logo-music {
+.logoMusic {
   position: relative;
   color: var(--primary-100);
   font-size: 18px;
   z-index: 1;
 }
 
-.logo-text {
+.logoText {
   font-size: 20px;
   font-weight: 600;
   color: var(--accent-100);
@@ -74,19 +74,19 @@
 }
 
 /* Navigation Menu */
-.nav-wrapper {
+.navWrapper {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.nav-menu {
+.navMenu {
   display: flex;
   gap: 2rem;
   align-items: center;
 }
 
-.nav-menu a {
+.navMenu a {
   color: var(--neutral-200);
   text-decoration: none;
   font-size: 0.95rem;
@@ -96,11 +96,11 @@
   padding: 0.5rem 0;
 }
 
-.nav-menu a:hover {
+.navMenu a:hover {
   color: var(--neutral-100);
 }
 
-.nav-menu a::after {
+.navMenu a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -111,17 +111,17 @@
   transition: width 0.3s ease;
 }
 
-.nav-menu a:hover::after,
-.nav-menu a.active::after {
+.navMenu a:hover::after,
+.navMenu a.active::after {
   width: 100%;
 }
 
-.nav-menu a.active {
+.navMenu a.active {
   color: var(--neutral-100);
 }
 
 /* Menu Toggle Button */
-.menu-toggle {
+.menuToggle {
   display: none;
   background: none;
   border: none;
@@ -133,12 +133,12 @@
   outline : none;
 }
 
-.menu-toggle:hover {
+.menuToggle:hover {
   color: var(--accent-100);
 }
 
-.menu-toggle:focus, 
-.menu-toggle:active {
+.menuToggle:focus, 
+.menuToggle:active {
   outline: none;
   box-shadow: none; /* Ensure no box-shadow appears */
 }
@@ -153,7 +153,7 @@
     width: 92%;
   }
 
-  .nav-menu {
+  .navMenu {
     gap: 1.5rem;
   }
 }
@@ -171,16 +171,16 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .header-container {
+  .headerContainer {
     padding: 0.75rem 1rem;
   }
 
-  .menu-toggle {
+  .menuToggle {
     display: block;
     z-index: 100;
   }
 
-  .nav-wrapper {
+  .navWrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -202,18 +202,18 @@
     transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
   }
 
-  .nav-wrapper.show {
+  .navWrapper.show {
     transform: translateX(0);
     visibility: visible;
     opacity: 1;
   }
 
-  .nav-menu {
+  .navMenu {
     flex-direction: column;
     gap: 2rem;
   }
 
-  .nav-menu a {
+  .navMenu a {
     font-size: 1.25rem;
   }
 }
@@ -232,22 +232,20 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .logo-wrapper {
+  .logoWrapper {
     width: 32px;
     height: 32px;
   }
 
-  .logo-cloud {
+  .logoCloud {
     font-size: 32px;
   }
 
-  .logo-music {
+  .logoMusic {
     font-size: 14px;
   }
 
-  .logo-text {
+  .logoText {
     font-size: 16px;
   }
 }
-
-

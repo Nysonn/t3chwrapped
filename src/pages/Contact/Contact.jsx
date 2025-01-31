@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './Contact.module.css';
+import { handleSubmit } from '../../utils/send-email';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,43 +11,6 @@ const Contact = () => {
   });
 
   const [status, setStatus] = useState({ type: '', message: '' });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const response = await fetch('http://localhost:5000/send-email', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-  
-      const result = await response.json();
-      if (result.success) {
-        setStatus({ type: 'success', message: 'Your message has been sent successfully!' });
-      } else {
-        setStatus({ type: 'error', message: 'Failed to send email. Please try again.' });
-      }
-  
-      // Clear the form
-      setFormData({ name: '', email: '', subject: '', message: '' });
-  
-    } catch (error) {
-      console.error('Error:', error);
-      setStatus({ type: 'error', message: 'Something went wrong. Please try again later.' });
-  
-      // Clear the form in case of a network error
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }
-  
-    // Hide message after 5 seconds
-    setTimeout(() => setStatus({ type: '', message: '' }), 5000);
-  };  
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
 
   return (
     <div className={classes.contactContainer}>
@@ -63,7 +27,7 @@ const Contact = () => {
           </div>
         )}
 
-        <form className={classes.contactForm} onSubmit={handleSubmit}>
+        <form className={classes.contactForm} onSubmit={(e) => handleSubmit(e, formData, setStatus, setFormData)}>
           <div className={classes.formGroup}>
             <label htmlFor="name">Name</label>
             <input
@@ -71,7 +35,7 @@ const Contact = () => {
               id="name"
               name="name"
               value={formData.name}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
               placeholder="Your name"
               required
             />
@@ -84,7 +48,7 @@ const Contact = () => {
               id="email"
               name="email"
               value={formData.email}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
               placeholder="your.email@example.com"
               required
             />
@@ -97,7 +61,7 @@ const Contact = () => {
               id="subject"
               name="subject"
               value={formData.subject}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
               placeholder="What's this about?"
               required
             />
@@ -109,7 +73,7 @@ const Contact = () => {
               id="message"
               name="message"
               value={formData.message}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
               placeholder="Your message here..."
               required
               rows="6"

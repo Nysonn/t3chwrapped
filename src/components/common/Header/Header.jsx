@@ -7,7 +7,7 @@ import {
   faBars, 
   faTimes 
 } from "@fortawesome/free-solid-svg-icons";
-import "./Header.css";
+import styles from "./Header.module.css"; 
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,26 +33,26 @@ export default function Header() {
     setMenuOpen(false);
   }, [location]);
 
-  //Open menu when hamburger button is clicked
+  // Open menu when hamburger button is clicked
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
-      <div className="header-container">
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={styles.headerContainer}>
         {/* Logo Section */}
-        <Link to="/" className="logo">
-          <div className="logo-wrapper">
-            <FontAwesomeIcon icon={faCloud} className="logo-cloud" />
-            <FontAwesomeIcon icon={faMusic} className="logo-music" />
+        <Link to="/" className={styles.logo}>
+          <div className={styles.logoWrapper}>
+            <FontAwesomeIcon icon={faCloud} className={styles.logoCloud} />
+            <FontAwesomeIcon icon={faMusic} className={styles.logoMusic} />
           </div>
-          <span className="logo-text">t3chwrapped</span>
+          <span className={styles.logoText}>t3chwrapped</span>
         </Link>
 
         {/* Hamburger Menu Button */}
         <button
-          className={`menu-toggle ${menuOpen ? 'active' : ''}`}
+          className={`${styles.menuToggle} ${menuOpen ? styles.active : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle Navigation Menu"
         >
@@ -60,24 +60,21 @@ export default function Header() {
         </button>
 
         {/* Navigation Menu */}
-        <div className={`nav-wrapper ${menuOpen ? 'show' : ''}`}>
-          <nav className="nav-menu">
-            <Link to="/news" className={location.pathname === '/news' ? 'active' : ''}>
+        <div className={`${styles.navWrapper} ${menuOpen ? styles.show : ''}`}>
+          <nav className={styles.navMenu}>
+            <Link to="/news" className={location.pathname.startsWith('/news') ? styles.active : ''}>
               News
             </Link>
-            <Link to="/designs" className={location.pathname === '/designs' ? 'active' : ''}>
+            <Link to="/designs" className={location.pathname.startsWith('/designs') ? styles.active : ''}>
               Designs
             </Link>
-            <Link to="/services" className={location.pathname === '/services' ? 'active' : ''}>
+            <Link to="/services" className={location.pathname.startsWith('/services') ? styles.active : ''}>
               Services
             </Link>
-            <Link to="/tools" className={location.pathname === '/tools' ? 'active' : ''}>
-              Tools
-            </Link>
-            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+            <Link to="/about" className={location.pathname.startsWith('/about') ? styles.active : ''}>
               About
             </Link>
-            <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+            <Link to="/contact" className={location.pathname.startsWith('/contact') ? styles.active : ''}>
               Contact
             </Link>
           </nav>
@@ -85,4 +82,4 @@ export default function Header() {
       </div>
     </header>
   );
-};
+}
