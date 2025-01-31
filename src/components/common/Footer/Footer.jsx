@@ -7,7 +7,8 @@ import {
   faPhone
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -46,11 +47,11 @@ export default function Footer() {
           <div className={classes.footerSection}>
             <h4>Quick Links</h4>
             <ul className={classes.footerLinks}>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/portfolio">Portfolio</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/designs">Portfolio</Link></li>
+              <li><Link to="/news">News</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -58,10 +59,10 @@ export default function Footer() {
           <div className={classes.footerSection}>
             <h4>Services</h4>
             <ul className={classes.footerLinks}>
-              <li><a href="/web-development">Web Development</a></li>
-              <li><a href="/digital-marketing">Digital Marketing</a></li>
-              <li><a href="/seo">SEO Optimization</a></li>
-              <li><a href="/consulting">Tech Consulting</a></li>
+              <li><Link to="/services">Web Development</Link></li>
+              <li><Link to="/services">Digital Marketing</Link></li>
+              <li><Link to="/services">SEO Optimization</Link></li>
+              <li><Link to="/services">Tech Consulting</Link></li>
             </ul>
           </div>
 
@@ -86,9 +87,6 @@ export default function Footer() {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin />
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <FaGithub />
-              </a>
             </div>
           </div>
         </div>
@@ -97,11 +95,11 @@ export default function Footer() {
           <div className={classes.footerBottomContent}>
             <p>&copy; {currentYear} t3chwrapped. All Rights Reserved.</p>
             <div className={classes.footerBottomLinks}>
-              <a href="/privacy">Privacy Policy</a>
+              <Link to="/privacy">Privacy Policy</Link>
               <span>|</span>
-              <a href="/terms">Terms of Service</a>
+              <Link to="/terms">Terms of Service</Link>
               <span>|</span>
-              <a href="/cookies">Cookie Policy</a>
+              <Link to="/cookies">Cookie Policy</Link>
             </div>
           </div>
         </div>

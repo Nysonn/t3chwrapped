@@ -7,6 +7,7 @@ import Designs from './pages/Designs/Designs'
 import News from './pages/News/News'
 import Contact from './pages/Contact/Contact'
 import BlogPost from './pages/BlogPost/BlogPost'
+import Error from './components/common/Error/Error'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="news" element={<News />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </Router>
