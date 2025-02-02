@@ -209,4 +209,43 @@
     cursor: pointer;
     color: var(--neutral-100);
   }
+
+  /* CSS Updates */
+.statusMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
   
