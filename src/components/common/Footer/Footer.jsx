@@ -38,7 +38,7 @@ export default function Footer() {
               </div>
               <div className={classes.contactItem}>
                 <FontAwesomeIcon icon={faMapMarkerAlt} />
-                <span>Mbarara, Uganda</span>
+                <span>Kampala, Uganda</span>
               </div>
             </div>
           </div>
