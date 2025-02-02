@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import emailRoutes from './routes/emailRoutes.js';
+import scheduleCallRoute from './routes/scheduleCallRoute.js';
 
 dotenv.config();
 
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api', emailRoutes);  
+app.use('/api', emailRoutes);
+app.use("/api", scheduleCallRoute);
 
 // Start server
 app.listen(PORT, () => {

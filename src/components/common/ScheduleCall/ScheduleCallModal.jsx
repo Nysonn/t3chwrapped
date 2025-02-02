@@ -11,10 +11,7 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    date: "",
-    time: "",
     service: service?.title || "",
-    timezone: "UTC", // Added default time zone
   });
 
   useEffect(() => {
@@ -39,11 +36,33 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  //Handle Submit Fuction for submitting the schedule call details to the email.
+const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Scheduling call with details:", formData);
-    onClose();
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/schedule-call", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        console.log(result.message);  // Success message
+      } else {
+        console.error("Error:", result.message);  // Error message
+      }
+      
+      onClose();  // Close modal after form submission
+    } catch (error) {
+      console.error("Error sending form data:", error);
+    }
   };
+  
 
   return (
     <Modal
@@ -103,7 +122,7 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
 
         <div className={classes.buttonGroup}>
           <SecondaryButton onClick={onClose}>Cancel</SecondaryButton>
-          <PrimaryButton>Confirm</PrimaryButton>
+          <PrimaryButton onClick={handleSubmit}>Confirm</PrimaryButton>
         </div>
       </form>
     </Modal>
