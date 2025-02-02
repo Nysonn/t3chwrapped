@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import { toast } from "react-toastify";
 import { X, CheckCircle, AlertCircle } from "lucide-react";
 import classes from "./ScheduleCallModal.module.css";
 import PrimaryButton from "../Button/PrimaryButton";
@@ -60,16 +59,6 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
         // Wait for the success message to be displayed, then close the modal
         setTimeout(() => {
           onClose();
-          // Show toast notification after modal closes
-          toast.success("Our Agent will reach out within 24 hours. Ensure to check your email.", {
-            position: "center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
         }, 2000); // Delay to allow success message visibility
       } else {
         setStatusMessage(result.message || "Something went wrong. Please try again.");

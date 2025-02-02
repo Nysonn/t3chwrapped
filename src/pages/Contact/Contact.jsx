@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Contact.module.css';
 import { handleSubmit } from '../../utils/send-email';
+import SecondaryButton from '../../components/common/Button/SecondaryButton';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Contact = () => {
   });
 
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSending, setIsSending] = useState(false);
 
   return (
     <div className={classes.contactContainer}>
@@ -27,7 +29,7 @@ const Contact = () => {
           </div>
         )}
 
-        <form className={classes.contactForm} onSubmit={(e) => handleSubmit(e, formData, setStatus, setFormData)}>
+        <form className={classes.contactForm} onSubmit={(e) => handleSubmit(e, formData, setStatus, setFormData, setIsSending)}>
           <div className={classes.formGroup}>
             <label htmlFor="name">Name</label>
             <input
@@ -80,7 +82,9 @@ const Contact = () => {
             />
           </div>
 
-          <button type="submit" className={classes.submitButton}>Send Message</button>
+          <SecondaryButton type="submit" disabled={isSending}>
+            {isSending ? "Sending..." : "Send Your Message"}
+          </SecondaryButton>
         </form>
       </div>
     </div>
@@ -88,3 +92,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
