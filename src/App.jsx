@@ -10,15 +10,16 @@ import News from './pages/News/News';
 import Contact from './pages/Contact/Contact';
 import BlogPost from './pages/BlogPost/BlogPost';
 import Error from './components/common/Error/Error';
+import "./index.css";
 
 function App() {
   return (
     <Router>
-      <ToastContainer 
+        <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={false}
-        newestOnTop={true}
+        newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

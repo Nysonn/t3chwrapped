@@ -62,7 +62,7 @@ export default function ScheduleCallModal({ isOpen, onClose, service }) {
           onClose();
           // Show toast notification after modal closes
           toast.success("Our Agent will reach out within 24 hours. Ensure to check your email.", {
-            position: "top-center",
+            position: "center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
