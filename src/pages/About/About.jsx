@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './About.module.css';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -20,31 +21,13 @@ const About = () => {
         </div>
       </section>
 
-      <section className={classes.servicesSection}>
+      {/* Updated Section: Our Vision Statement */}
+      <section className={classes.visionSection}>
         <div className={classes.contentWrapper}>
-          <h2 className={classes.sectionTitle}>What We Deliver</h2>
-          <div className={classes.servicesGrid}>
-            <div className={classes.serviceCard}>
-              <div className={classes.serviceIcon}>🎸</div>
-              <h3>Artist Websites</h3>
-              <p>Professional platforms that showcase your work and engage fans effectively</p>
-            </div>
-            <div className={classes.serviceCard}>
-              <div className={classes.serviceIcon}>💿</div>
-              <h3>E-Commerce Solutions</h3>
-              <p>Custom online stores for selling music, merchandise, and digital products</p>
-            </div>
-            <div className={classes.serviceCard}>
-              <div className={classes.serviceIcon}>📣</div>
-              <h3>Audience Growth</h3>
-              <p>Strategic tools to expand your reach and boost fan interactions</p>
-            </div>
-            <div className={classes.serviceCard}>
-              <div className={classes.serviceIcon}>🎭</div>
-              <h3>Promotional Platforms</h3>
-              <p>Dynamic solutions for events, releases, and collaboration opportunities</p>
-            </div>
-          </div>
+          <h2 className={classes.sectionTitle}>Our Vision</h2>
+          <p className={classes.missionText}>
+            We envision a world where technology and creativity seamlessly converge, empowering musicians and artists to reach their full potential. By fostering innovation and collaboration, we aim to revolutionize the music industry, making it more accessible, inclusive, and impactful for everyone.
+          </p>
         </div>
       </section>
 
@@ -52,12 +35,11 @@ const About = () => {
         <div className={classes.contentWrapper}>
           <h2 className={classes.sectionTitle}>Our Expertise</h2>
           <div className={classes.techStack}>
-            <div className={classes.techItem}>React</div>
-            <div className={classes.techItem}>Node.js</div>
-            <div className={classes.techItem}>PostgreSQL</div>
-            <div className={classes.techItem}>JavaScript</div>
-            <div className={classes.techItem}>HTML5</div>
-            <div className={classes.techItem}>CSS3</div>
+            <div className={classes.techItem}>Software Maintenance</div>
+            <div className={classes.techItem}>Web Applications</div>
+            <div className={classes.techItem}>Mobile Apps</div>
+            <div className={classes.techItem}>Analytics & SEO</div>
+            <div className={classes.techItem}>Website Development</div>
           </div>
         </div>
       </section>
@@ -69,12 +51,12 @@ const About = () => {
             Let's collaborate to bring your vision to life with technology that works for you.
           </p>
           <div className={classes.ctaButtons}>
-            <a href="/contact" className={classes.primaryButton}>
+            <Link to="/services" className={classes.primaryButton}>
               Get Started
-            </a>
-            <a href="/blog" className={classes.secondaryButton}>
+            </Link>
+            <Link to="/news" className={classes.secondaryButton}>
               Explore Our Blog
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -82,4 +64,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;
