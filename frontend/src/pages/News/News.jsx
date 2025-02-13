@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './News.module.css';
 import NewsImage from '../../../src/assets/images/female-singer.jpg';
-import { FaCalendar, FaUser, FaTags, FaArrowRight } from 'react-icons/fa';
+import SecondaryButton from '../../components/common/Button/SecondaryButton'
 
 // Array of dummy blog posts
 const blogPosts = [
@@ -10,10 +11,7 @@ const blogPosts = [
     title: "How to Choose the Best DAW for Your Music Style",
     description: "A comprehensive guide to finding the perfect digital audio workstation that matches your workflow and musical genre.",
     image: NewsImage,
-    author: "Sarah Johnson",
-    date: "March 15, 2024",
     category: "Production",
-    readTime: "8 min read",
     link: "/blog/daw-guide",
   },
   {
@@ -53,15 +51,21 @@ const blogPosts = [
   },
 ];
 
-const categories = [
-  { name: "Tutorials", count: 15 },
-  { name: "Reviews", count: 12 },
-  { name: "Insights", count: 8 },
-  { name: "Production", count: 10 },
-  { name: "Industry News", count: 6 },
-];
-
 export default function News() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredPosts = useMemo(() => {
+    return blogPosts.filter((post) => {
+      return !searchQuery || 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.description.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  }, [searchQuery]);
+
+  const handleSearchChange = useCallback((e) => {
+    setSearchQuery(e.target.value);
+  }, []);
+
   return (
     <main className={classes.newsContainer}>
       <header className={classes.newsHeader}>
@@ -70,68 +74,43 @@ export default function News() {
       </header>
 
       <section className={classes.newsContent}>
-        {/* Featured Post */}
-        <article className={classes.featuredPost}>
-          <div className={classes.featuredImageWrapper}>
-            <img src={NewsImage} alt="Featured blog post" className={classes.featuredImage} />
-            <div className={classes.featuredCategory}>Featured</div>
-          </div>
-          <div className={classes.featuredContent}>
-            <div className={classes.postMeta}>
-              <span><FaCalendar /> March 20, 2024</span>
-              <span><FaUser /> John Doe</span>
-              <span><FaTags /> Production</span>
-            </div>
-            <h2>Transform Your Music Career with the Right Tech Tools</h2>
-            <p>
-              Explore how innovative tools and technologies are shaping the
-              future of the music industry. Discover tips, tricks, and solutions
-              for musicians and creators.
-            </p>
-            <a href="/blog/transform-music-career" className={classes.readMore}>
-              Read Article <FaArrowRight />
-            </a>
-          </div>
-        </article>
-
-        {/* Category Filter */}
-        <div className={classes.categorySection}>
-          <h3>Browse by Category</h3>
-          <div className={classes.categoryList}>
-            {categories.map((category) => (
-              <button key={category.name} className={classes.categoryButton}>
-                {category.name}
-                <span className={classes.categoryCount}>{category.count}</span>
-              </button>
-            ))}
-          </div>
+        {/* Search Bar */}
+        <div className={classes.searchSection}>
+          <input
+            type="text"
+            placeholder="Search articles..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className={classes.searchInput}
+          />
         </div>
 
-        {/* Recent Posts Grid */}
-        <section className={classes.recentPosts}>
-          <h3>Latest Articles</h3>
-          <div className={classes.postGrid}>
-            {blogPosts.map((post) => (
+        {/* Posts Grid */}
+        <div className={classes.postGrid}>
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
               <article key={post.id} className={classes.postCard}>
                 <div className={classes.postImageWrapper}>
                   <img src={post.image} alt={post.title} />
-                  <div className={classes.postCategory}>{post.category}</div>
+                  {post.category && (
+                    <div className={classes.postCategory}>{post.category}</div>
+                  )}
                 </div>
                 <div className={classes.postContent}>
-                  <div className={classes.postMeta}>
-                    <span><FaCalendar /> {post.date}</span>
-                    <span>{post.readTime}</span>
-                  </div>
                   <h4>{post.title}</h4>
                   <p>{post.description}</p>
-                  <a href={`/blog/${post.title.toLowerCase().replace(/\s+/g, '-')}`} className={classes.cardReadMore}>
-                      Read More <FaArrowRight />
-                  </a>
+                  <Link to={post.link}>
+                    <SecondaryButton>Read More</SecondaryButton>
+                  </Link>
                 </div>
               </article>
-            ))}
-          </div>
-        </section>
+            ))
+          ) : (
+            <div className={classes.noResults}>
+              <p>No articles found matching your criteria.</p>
+            </div>
+          )}
+        </div>
 
         {/* Newsletter Section */}
         <section className={classes.newsletter}>
