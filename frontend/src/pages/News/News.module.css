@@ -82,26 +82,37 @@
 }
 
 .postCard {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform var(--transition-default);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-default);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    backdrop-filter: blur(10px);
 }
 
 .postCard:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .postImageWrapper {
     position: relative;
-    height: 200px;
+    height: 220px;
+    overflow: hidden;
 }
 
 .postImageWrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.postCard:hover .postImageWrapper img {
+    transform: scale(1.05);
 }
 
 .postCategory {
@@ -116,7 +127,21 @@
 }
 
 .postContent {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
+}
+
+.postContent h4 {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(90deg, var(--accent-200), var(--accent-300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.postContent p {
+    color: var(--neutral-300);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
 }
 
 .readMore, .cardReadMore {

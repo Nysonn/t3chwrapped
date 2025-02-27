@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { AiOutlinePlayCircle, AiOutlineHeart, AiOutlineEye, AiOutlineStar } from 'react-icons/ai';
-import { FiFilter, FiArrowRight } from 'react-icons/fi';
+import { AiOutlinePlayCircle, AiOutlineHeart, AiOutlineEye, AiOutlineStar, AiOutlineSearch } from 'react-icons/ai';
+import { FiArrowRight } from 'react-icons/fi';
 import {
   setCurrentImageIndex,
   setShowTooltip,
@@ -15,11 +15,6 @@ import DemoImage3 from '../../../src/assets/images/brandie-singer.jpg';
 import PrimaryButton from '../../../src/components/common/Button/PrimaryButton.jsx';
 import FAQSection from '../../components/sections/FAQ/Faq.jsx';
 import classes from './Designs.module.css';
-
-const categories = [
-  "All Templates", "Artist Portfolio", "Music Studio", "Record Label", 
-  "Producer", "Band", "DJ", "Event"
-];
 
 const allDesigns = [
   {
@@ -118,13 +113,12 @@ const allDesigns = [
 export default function Designs() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [activeCategory, setActiveCategory] = useState("All Templates");
-  const [filteredDesigns, setFilteredDesigns] = useState(allDesigns);
   const [localIndexes, setLocalIndexes] = useState({});
   const [hoveredDesign, setHoveredDesign] = useState(null);
   const tooltipTimeout = useSelector((state) => state.designs.tooltipTimeout);
   const showTooltip = useSelector((state) => state.designs.showTooltip);
   const isHomepage = useSelector((state) => state.designs.isHomepage);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // Set isHomepage based on the current path
@@ -154,25 +148,19 @@ export default function Designs() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    let filtered = [];
-    if (activeCategory === "All Templates") {
-      filtered = allDesigns;
-    } else {
-      filtered = allDesigns.filter(design => design.category === activeCategory);
-    }
-    
-    // If on homepage, only show first 6 designs
-    if (isHomepage) {
-      filtered = filtered.slice(0, 6);
-    }
-    
-    setFilteredDesigns(filtered);
-  }, [activeCategory, isHomepage]);
+  // Determine the designs to display based on the homepage flag.
+  const displayedDesigns = isHomepage ? allDesigns.slice(0, 6) : allDesigns;
 
-  const handleMouseEnter = (index) => {
+  // Filter designs based on search term
+  const filteredDesigns = displayedDesigns.filter(design => 
+    design.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    design.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    design.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleMouseEnter = (designId) => {
     const timeout = setTimeout(() => {
-      dispatch(setShowTooltip(index));
+      dispatch(setShowTooltip(designId));
     }, 1000);
     dispatch(setTooltipTimeout(timeout));
   };
@@ -184,46 +172,28 @@ export default function Designs() {
 
   return (
     <section className={classes.designsSection}>
-      <div className={isHomepage ? classes.container : classes.containermore }>
+      <div className={isHomepage ? classes.container : classes.containermore}>
         <header className={classes.header}>
           <h1 className={classes.title}>Popular Designs</h1>
           <p className={classes.subtitle}>
             Professionally crafted designs for the modern music industry
           </p>
+          
+          {!isHomepage && (
+            <div className={classes.searchContainer}>
+              <div className={classes.searchWrapper}>
+                <AiOutlineSearch className={classes.searchIcon} />
+                <input
+                  type="text"
+                  placeholder="Search templates..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={classes.searchInput}
+                />
+              </div>
+            </div>
+          )}
         </header>
-
-            <div className={classes.filterSection}>
-            <div className={classes.filterHeader}>
-              <div className={classes.filterIcon}>
-                <FiFilter />
-                <span>Filter Templates</span>
-              </div>
-              <div className={classes.resultsCount}>
-                {isHomepage 
-                  ? `Showing 6 of ${allDesigns.length} templates` 
-                  : `${filteredDesigns.length} templates found`
-                }
-              </div>
-            </div>
-            <div className={classes.categoryTabs}>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`${classes.categoryTab} ${
-                    activeCategory === category ? classes.activeTab : ''
-                  }`}
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                  <span className={classes.categoryCount}>
-                    {category === "All Templates" 
-                      ? allDesigns.length 
-                      : allDesigns.filter(d => d.category === category).length}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
 
         <div className={classes.designsGrid}>
           {filteredDesigns.map((design) => (
@@ -244,7 +214,11 @@ export default function Designs() {
                   style={{ backgroundImage: `url(${design.images[localIndexes[design.id]]})` }}
                 />
                 <div className={`${classes.designOverlay} ${hoveredDesign === design.id ? classes.showOverlay : ''}`}>
-                  <button className={classes.customizeButton}>
+                  <button
+                    className={classes.customizeButton}
+                    onMouseEnter={() => handleMouseEnter(design.id)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <AiOutlinePlayCircle />
                     <span>Customize Template</span>
                     <FiArrowRight />
@@ -264,8 +238,12 @@ export default function Designs() {
                   <span className={classes.rating}>
                     <AiOutlineStar /> {design.rating}
                   </span>
-                  <span><AiOutlineHeart /> {design.likes}</span>
-                  <span><AiOutlineEye /> {design.views}</span>
+                  <span>
+                    <AiOutlineHeart /> {design.likes}
+                  </span>
+                  <span>
+                    <AiOutlineEye /> {design.views}
+                  </span>
                 </div>
               </div>
               <div className={classes.designInfo}>
@@ -290,7 +268,7 @@ export default function Designs() {
             </PrimaryButton>
           </div>
         )}
-        
+
         {!isHomepage && <FAQSection />}
       </div>
     </section>
